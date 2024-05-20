@@ -11,12 +11,14 @@ public class Ator {
     private LocalDateTime birthDate;
     private int ageMovie;
     private int ageNow;
+    private String award;
 
-    public Ator(String nome, String movie, int year, LocalDateTime birthDate) {
+    public Ator(String nome, String movie, int year, LocalDateTime birthDate, String award) {
         this.nome = nome;
         this.movie = movie;
         this.year = year;
         this.birthDate = birthDate;
+        this.award = award;
         this.ageMovie = calcularIdadeDoAtorNaPremiacao();
         this.ageNow = calcularIdadeDoAtorAtualmente();
     }
@@ -31,6 +33,10 @@ public class Ator {
         var dataNascimento = LocalDate.of(birthDate.getYear(), birthDate.getMonth(), birthDate.getDayOfMonth());
         var dataFilme = LocalDate.of(this.year, 1, 1);
         return Period.between(dataNascimento, dataFilme).getYears();
+    }
+
+    public String getAward() {
+        return award;
     }
 
     public String getNome() {

@@ -1,4 +1,4 @@
-package com.ada.services;
+package com.ada.helpers;
 
 import com.ada.models.Ator;
 
@@ -9,10 +9,11 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ManipuladorDeArquivos {
 
-    private static List<Ator> learArquivoAtores(final String filename)
+    public static List<Ator> lerArquivoAtores(final String filename)
             throws IOException {
         List<Ator> retorno = new ArrayList<>();
 
@@ -30,11 +31,32 @@ public class ManipuladorDeArquivos {
             var anoAniversario = Integer.parseInt(extracao[10]);
             var mesAniversario = Integer.parseInt(extracao[8]);
             var diaAniversario = Integer.parseInt(extracao[9]);
+            var premio = extracao[2];
             LocalDateTime dataAniversario =
                     LocalDateTime.of(anoAniversario, mesAniversario, diaAniversario, 0, 0);
-            retorno.add(new Ator(nome, movie, ano,dataAniversario));
+            retorno.add(new Ator(nome, movie, ano,dataAniversario, premio));
         }
 
         return retorno;
+    }
+
+    public static void gravarAtoresNoArquivo(final List<Ator> atores,
+                                             final String filename) throws IOException {
+
+        Path path = Paths.get(filename);
+
+        var content = atores.stream()
+                .map(ator -> ator.getNome() + ","
+                        + ator.getMovie() + ","
+                        + ator.getYear() + ","
+                        + ator.getBirthDate() + ","
+                        + ator.getAward() + ","
+                        + ator.getAgeMovie() + ","
+                        + ator.getAgeNow()
+                )
+                .collect(Collectors.joining("\n"));
+
+        Files.writeString(path, content);
+
     }
 }
