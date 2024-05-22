@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,6 +47,8 @@ public class ManipuladorDeArquivos {
         Path path = Paths.get(filename);
 
         var content = atores.stream()
+                .sorted(Comparator.comparing(Ator::getNome)
+                        .thenComparingInt(Ator::getYear))
                 .map(ator -> ator.getNome() + ","
                         + ator.getMovie() + ","
                         + ator.getYear() + ","
