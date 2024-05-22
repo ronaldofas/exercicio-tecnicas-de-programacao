@@ -63,5 +63,16 @@ public class Ator {
         return ageNow;
     }
 
-
+    @Override
+    public String toString() {
+        return "Ator{" +
+                "nome='" + nome + '\'' +
+                ", movie='" + movie + '\'' +
+                ", year=" + year +
+                ", birthDate=" + birthDate +
+                ", ageMovie=" + ageMovie +
+                ", ageNow=" + ageNow +
+                ", award='" + award + '\'' +
+                '}';
+    }
 }
