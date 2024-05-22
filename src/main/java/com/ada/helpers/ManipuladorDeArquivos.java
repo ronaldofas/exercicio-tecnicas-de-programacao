@@ -16,12 +16,12 @@ public class ManipuladorDeArquivos {
     public static List<Ator> lerArquivoAtores(final String filename)
             throws IOException {
         List<Ator> retorno = new ArrayList<>();
-
+        String regex = ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
         final Path path = Paths.get(filename);
         var lines = Files.readAllLines(path);
 
         for (String linha : lines){
-            var extracao = linha.split(",");
+            var extracao = linha.split(regex);
             if (extracao[0].equals("oscar_no")){
                 continue;
             }

@@ -5,13 +5,13 @@ import java.time.LocalDateTime;
 import java.time.Period;
 
 public class Ator {
-    private String nome;
-    private String movie;
-    private int year;
-    private LocalDateTime birthDate;
-    private int ageMovie;
-    private int ageNow;
-    private String award;
+    private final String nome;
+    private final String movie;
+    private final int year;
+    private final LocalDateTime birthDate;
+    private final int ageMovie;
+    private final int ageNow;
+    private final String award;
 
     public Ator(String nome, String movie, int year, LocalDateTime birthDate, String award) {
         this.nome = nome;

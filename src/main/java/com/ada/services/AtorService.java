@@ -5,14 +5,12 @@ import com.ada.models.Ator;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class AtorService {
     public List<Ator> obterAtores() throws IOException {
-        String nomeDoArquivo = "oscar_actors.csv";
+        String nomeDoArquivo = "oscars_actors.csv";
         URL arquivoOrigem = getClass().getClassLoader().getResource(nomeDoArquivo);
         if (arquivoOrigem != null){
             // Fazer a leitura dos arquivos
@@ -30,7 +28,8 @@ public class AtorService {
                 .toList();
 
         var caminhoArquivo = Objects.requireNonNull(
-                getClass().getClassLoader().getResource("oscar_actors.csv")).getPath();
+                getClass().getClassLoader().getResource("oscars_actors.csv")).getPath();
+        caminhoArquivo = caminhoArquivo.replace("oscars_actors.csv", "atrizes.csv");
         ManipuladorDeArquivos.gravarAtoresNoArquivo(atrizes, caminhoArquivo);
     }
 
@@ -42,7 +41,8 @@ public class AtorService {
                 .toList();
 
         var caminhoArquivo = Objects.requireNonNull(
-                getClass().getClassLoader().getResource("oscar_actors.csv")).getPath();
+                getClass().getClassLoader().getResource("oscars_actors.csv")).getPath();
+        caminhoArquivo = caminhoArquivo.replace("oscars_actors.csv", "atores.csv");
         ManipuladorDeArquivos.gravarAtoresNoArquivo(atrizes, caminhoArquivo);
     }
 }
